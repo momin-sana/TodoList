@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/swipebackground"
+    android:orientation="horizontal"
+    android:padding="10dp"
+    android:visibility="visible"
+    android:gravity="end"
+    android:weightSum="4"
+    app:cardCornerRadius="10dp"
+    android:elevation="2dp"
+    android:layout_marginTop="7dp"
+    android:layout_marginVertical="5dp"
+    android:layout_marginHorizontal="15dp">
+
+    <TextView
+        android:id="@+id/delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:text="@string/delete_label"
+        android:textAlignment="center"
+        android:paddingBottom="5dp"
+        android:paddingLeft="19dp"
+        android:paddingTop="5dp"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:clickable="true"/>
+
+
+    <TextView
+        android:id="@+id/undo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:textAlignment="center"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:text="@string/undo_label"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:clickable="true"/>
+
+</LinearLayout>
