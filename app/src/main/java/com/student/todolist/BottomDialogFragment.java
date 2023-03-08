@@ -61,38 +61,36 @@ public class BottomDialogFragment extends BottomSheetDialogFragment implements O
 
         final boolean finalIsUpdate = isUpdate;
 
-        editText_inputTask.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
-                    String text = editText_inputTask.getText().toString().trim();
-                    if (finalIsUpdate) {
+        editText_inputTask.setOnEditorActionListener((v, actionId, event) -> {
+            if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
+                String text = editText_inputTask.getText().toString().trim();
+                if (finalIsUpdate) {
 //                update work
-                        dbHelper = new DBHelper(getContext());
-                        todoModel = new TodoModel();
-                        todoModel.setId(taskId);
-                        todoModel.setTask(text);
-                        dbHelper.updateTask(todoModel);
+                    dbHelper = new DBHelper(getContext());
+                    todoModel = new TodoModel();
+                    todoModel.setId(taskId);
+                    todoModel.setTask(text);
+                    dbHelper.updateTask(todoModel);
 
-                    } else if (TextUtils.isEmpty(text)) {
-                        editText_inputTask.setError("Enter someValue");
-                        Toast.makeText(getActivity(), "Task Not Inserted", Toast.LENGTH_SHORT).show();
-                    } else if (text.length() > 1) {
-                        dbHelper.insertText(text);
-                        editText_inputTask.setText("");
-                        dismiss();
-                    }
-                    TodoFragment todoFragment = new TodoFragment();
-                    FragmentTransaction transaction = getActivity()
-                            .getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment_container, todoFragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
+                } else if (TextUtils.isEmpty(text)) {
+                    editText_inputTask.setError("Enter someValue");
+                    Toast.makeText(getActivity(), "Task Not Inserted", Toast.LENGTH_SHORT).show();
+                } else if (text.length() > 1) {
+                    dbHelper.insertText(text);
+                    editText_inputTask.setText("");
                     dismiss();
-
-                    enterBtn.performClick();
                 }
-                return false;
+                TodoFragment todoFragment = new TodoFragment();
+                FragmentTransaction transaction = requireActivity()
+                        .getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, todoFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                dismiss();
+
+                enterBtn.performClick();
             }
+            return false;
         });
 
 
@@ -107,16 +105,14 @@ public class BottomDialogFragment extends BottomSheetDialogFragment implements O
                 dbHelper.updateTask(todoModel);
 
             } else if (TextUtils.isEmpty(text)) {
-                editText_inputTask.setError("Enter someValue");
-                                    Toast.makeText(getActivity(), "Task Not Inserted", Toast.LENGTH_SHORT).show();
-
+                editText_inputTask.setError(getString(R.string.enter_value));
             } else if (text.length() > 1) {
                 dbHelper.insertText(text);
                 editText_inputTask.setText("");
                 dismiss();
             }
             TodoFragment todoFragment = new TodoFragment();
-            FragmentTransaction transaction = getActivity()
+            FragmentTransaction transaction = requireActivity()
                     .getSupportFragmentManager().beginTransaction();
             transaction.replace(R.id.fragment_container, todoFragment);
             transaction.addToBackStack(null);

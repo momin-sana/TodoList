@@ -9,10 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -23,7 +25,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
     private final DBHelper dbHelper;
     public Context context;
 //    private ArrayList<TodoModel> itemsPendingRemoval;
-//    private static final int PENDING_REMOVAL_TIMEOUT = 3000; // 3sec
+    private static final int PENDING_REMOVAL_TIMEOUT = 3000; // 3sec
 //    private Handler handler = new Handler(); // hanlder for running delayed runnables
 //    HashMap<TodoModel, Runnable> pendingRunnables = new HashMap<TodoModel, Runnable>(); // map of items to pending runnable, to cancel the removal
 
@@ -85,12 +87,12 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 //                    undoDelItem(todoModelArrayList.get(position));
 //                }
 //            });
-////            holder.delete.setOnClickListener(new View.OnClickListener() {
-////                @Override
-////                public void onClick(View view) {
-////                    popDelete(todoModelArrayList.get(position).getId(),todoModelArrayList.get(position).getTask(),position);
-////                }
-////            });
+//            holder.delete.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    popDelete(todoModelArrayList.get(position).getId(),todoModelArrayList.get(position).getTask(),position);
+//                }
+//            });
 //        } else
 //        /** show regular layout and hide swipe layout*/
 //        holder.regularLayout.setVisibility(View.VISIBLE);
@@ -107,7 +109,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 //            notifyItemChanged(todoModelArrayList.indexOf(customer));
 //        }
 //    }
-
+//
 //    public void pendingRemoval(int pos, int taskId,String taskName){
 //        final TodoModel data = todoModelArrayList.get(pos);
 //        if (!itemsPendingRemoval.contains(data)){
@@ -147,11 +149,18 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView textView;
+        public TextView textView, undo, delete;
+        public LinearLayout swipeLayout;
+        public RelativeLayout regularLayout;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
               textView = itemView.findViewById(R.id.list_item_textView);
+              undo = itemView.findViewById(R.id.undo);
+              delete = itemView.findViewById(R.id.delete);
+            swipeLayout = itemView.findViewById(R.id.swipeLayout);
+            regularLayout = itemView.findViewById(R.id.regularLayout);
+
         }
     }
 
