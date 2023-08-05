@@ -97,7 +97,6 @@ public class BottomDialogFragment extends BottomSheetDialogFragment implements O
         enterBtn.setOnClickListener(view1 -> {
             String text = editText_inputTask.getText().toString().trim();
             if (finalIsUpdate) {
-//                update work
                 dbHelper = new DBHelper(this.getActivity());
                 todoModel = new TodoModel();
                 todoModel.setId(taskId);

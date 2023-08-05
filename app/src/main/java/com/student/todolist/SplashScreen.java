@@ -1,7 +1,10 @@
 package com.student.todolist;
 
+import static com.student.todolist.R.layout.activity_splash_screen;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +12,7 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashScreen extends AppCompatActivity {
     TextView appName;
     LottieAnimationView lottieAnimationView;

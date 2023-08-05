@@ -18,7 +18,7 @@
         <activity
             android:name=".SplashScreen"
             android:exported="true"
-            android:theme="@style/Theme.Splash.TodoList">
+            android:theme="@style/Theme.TodoList">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

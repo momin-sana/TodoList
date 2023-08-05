@@ -51,7 +51,9 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues = new ContentValues();
         contentValues.put(TASK_COL, todoModel.getTask());
 
-        db.update(TABLE_NAME, contentValues, ID_COL + " =? ",new String[]{String.valueOf(todoModel.getId())});
+        db.update(TABLE_NAME, contentValues,
+                ID_COL + " =? ",
+                new String[]{String.valueOf(todoModel.getId())});
         db.close();
     }
 
